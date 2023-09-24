@@ -5,3 +5,7 @@ def job_detail(request, id):
     get_job = JobPostModel.objects.get(pk = id)
 
     return render(request, 'candidate/job_detail.html', {'data': get_job})
+
+
+def profile(request):
+    return render(request, 'candidate/profile.html')

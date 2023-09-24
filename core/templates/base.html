@@ -19,7 +19,21 @@
             <a href="" class="text-gray-700"> 
             Blog</a>
             <a href="{% url 'job_post' %}" class="text-gray-700">Dashboard</a>
-            <a href="" class="text-gray-700">Profile</a>
+
+            <!-- <a href="" class="text-gray-700">Profile</a> -->
+            <div class="relative group">
+                <button class="text-gray-700 focus:outline-none">
+                    Profile
+                    <svg class="w-4 h-4 inline-block ml-2 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M10 12l-6-6h12z" />
+                    </svg>
+                </button>
+                <ul class="absolute hidden  bg-white text-gray-800 border border-gray-200 py-2 z-40 group-hover:block">
+                    <li><a href="{% url 'profile' %}" class="block px-4 py-2 hover:bg-gray-200">Profile</a></li>
+                    <li><a href="#" class="block px-4 py-2 hover:bg-gray-200">My applied job</a></li>
+                </ul>
+            </div>
+
             <a href="{% url 'signup' %}" class="text-gray-700">Signup</a>
             <a href="{% url 'login' %}" class="text-gray-700">Login</a>
             <a href="{% url 'logout' %}" class="text-gray-700">Logout</a>
