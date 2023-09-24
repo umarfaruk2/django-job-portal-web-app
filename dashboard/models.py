@@ -1,13 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 from accounts.models import RegisterInfoModel
+from .contains import JOB_TYPE
 
 
 class JobPostModel(models.Model):
-    JOB_TYPE = (
-        ('FULL-TIME', 'FULL-TIME'),
-        ('PART-TIME', 'PART-TIME')
-    )
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     title = models.CharField(max_length=50)
     company = models.CharField(max_length=50)
