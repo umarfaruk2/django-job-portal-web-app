@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Job detail
+{% endblock title %}
+
+
+{% block content %}
+    <header class="bg-blue-500 p-4 text-white">
+        <div class="container mx-auto">
+            <h1 class="text-2xl font-semibold">{{data.title}}</h1>
+            <p class="text-lg">{{data.company}}</p>
+        </div>
+    </header>
+
+    <!-- Job Details -->
+    <section class="container mx-auto mt-6 p-4 bg-white">
+        <h2 class="text-xl font-semibold">Job Description</h2>
+        <p class="mt-2">
+           {{data.description}} 
+        </p>
+
+        <h2 class="text-xl font-semibold mt-4">Job overview</h2>
+        <ul class=" mt-2 mb-8">
+            <li><span class="font-bold">Location</span> : {{data.location}}</li>
+            <li><span class="font-bold">Job type</span> : {{data.job_type}}</li>
+            <li><span class="font-bold">Salary</span> : ${{data.salary}}</li>
+        </ul>
+        
+        <a href="" class="bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        Apply Now
+      </a>
+    </section>
+
+{% endblock content %}

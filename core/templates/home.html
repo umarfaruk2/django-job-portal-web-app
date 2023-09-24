@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block content %}
+<div
+  style="
+    background-image: url('/static/images/job_portal_banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    position: relative;
+  ">
+  <div class="h-[600px] flex items-center z-10 justify-center relative"> 
+    <div class="absolute inset-0 bg-[#7f848c] opacity-40"></div>
+    <div class="text-center relative"> 
+      <h3 class="text-4xl text-white font-bold">The Easiest Way To Get Your Dream Job</h3>
+      <p class="text-white mx-auto py-5">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+        cupiditate recusandae nulla illo. Vero quaerat hic atque alias a ut!
+      </p>
+
+      <form action="" method="GET">
+        <div class="flex items-center justify-center mt-10">
+          <input
+            type="text"
+            name="q"
+            placeholder="Search for jobs..."
+            class="pl-2 py-4 border rounded-l-md border-gray-300 w-96 focus:outline-none"
+          />
+          <button type="submit" class="bg-cyan-500 text-white px-2 py-4 rounded-r-md">
+            Search
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- job list -->
+
+  <h3 class="mt-10 text-3xl font-bold text-center">Feature Jobs</h3>
+
+  {% for item in data %}
+    <div class="bg-white rounded-lg border mx-10 p-6 my-4">
+  <div class="flex flex-col lg:flex-row justify-between items-center">
+    <div class="lg:w-2/3 pr-8">
+      <h2 class="text-xl font-semibold text-gray-800 mb-3">{{item.title}}</h2>
+      <div class="flex space-x-10 text-left">
+        <p class="text-gray-600">{{item.company}}</p>
+      <p class="text-gray-600">{{item.location}}</p>
+      <p class="text-gray-800 font-semibold">${{item.salary}}</p>
+      </div>
+    </div>
+    <div class="lg:w-1/3 mt-4 lg:mt-0 text-center">
+      <p class="text-gray-600">Full-Time</p>
+      <p class="text-gray-600 pb-4">Publish time: {{item.publish_date|date:"d/m/Y" }}</p>
+      <a href="{% url 'job_detail' item.id %}" class="bg-blue-500 text-white rounded-full px-4 py-2 hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        Apply Now
+      </a>
+    </div>
+  </div>
+</div>
+  {% endfor %} 
+
+<!-- footer -->
+
+<footer class="bg-gray-800 py-6">
+  <div class="container mx-auto text-white">
+    <div class="flex flex-wrap justify-between items-center">
+      <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
+        <h3 class="text-2xl font-semibold">Work Link</h3>
+        <p class="mt-2 text-gray-300">Your job search companion.</p>
+      </div>
+      <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
+        <h4 class="text-lg font-semibold">Explore</h4>
+        <ul class="mt-2">
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Jobs</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Companies</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">About Us</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Contact</a></li>
+        </ul>
+      </div>
+      <div class="w-full lg:w-1/4 mb-4 lg:mb-0">
+        <h4 class="text-lg font-semibold">Resources</h4>
+        <ul class="mt-2">
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Blog</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">FAQs</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Privacy Policy</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Terms of Service</a></li>
+        </ul>
+      </div>
+      <div class="w-full lg:w-1/4">
+        <h4 class="text-lg font-semibold">Connect</h4>
+        <ul class="mt-2">
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Facebook</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Twitter</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">LinkedIn</a></li>
+          <li><a href="#" class="text-gray-300 hover:text-blue-400">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="border-t border-gray-700 my-4">
+    <p class="text-center text-gray-300">&copy; 2023 Work Link All rights reserved.</p>
+  </div>
+</footer>
+
+{% endblock content %}

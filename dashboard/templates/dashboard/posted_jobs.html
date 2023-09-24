@@ -1,0 +1,44 @@
+{% extends "dashboard/base.html" %} 
+{% block title %} My posted job{% endblock title %} 
+
+{% block content %}
+<div class="ml-10 mt-7">
+  <h3 class="font-bold text-2xl text-center">My posted jobs</h3>
+
+  <div class="container pr-7 mt-4">
+    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+      <!-- Table Header -->
+      <thead class="bg-gray-200 uppercase text-sm text-gray-600">
+        <tr>
+          <th class="py-3 px-6 text-left">Title</th>
+          <th class="py-3 px-6 text-left">Company</th>
+          <th class="py-3 px-6">Description</th>
+          <th class="py-3 px-6 text-center">Salary</th>
+          <th class="py-3 px-6 text-center">Location</th>
+          <th class="py-3 px-6 text-center">Job type</th>
+          <th class="py-3 px-6 text-center">Action</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody class="text-gray-600 text-sm font-light">
+        {% for item in data %}
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="py-3 px-6 text-left">{{item.title}}</td>
+          <td class="py-3 px-6 text-left">{{item.company}}</td>
+          <td class="py-3 px-6 text-center">
+            {{item.description|truncatewords:10}}
+          </td>
+          <td class="py-3 px-6 text-center">{{item.salary}}</td>
+          <td class="py-3 px-6 text-center">{{item.location}}</td>
+          <td class="py-3 px-6 text-center">{{item.job_type}}</td>
+          <td class="text-center">
+            <a href="{% url 'update_post' pk=item.id %}" class="text-white bg-amber-600 rounded-md p-1">Update</a>
+            <a href="{% url 'delete_post' item.id %}" class="text-white bg-red-600 rounded-md p-1">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}
