@@ -14,8 +14,10 @@ def home(request):
     elif job:
         job_list = JobPostModel.objects.filter(job_type = job)
 
+
     job_type = ['All']
     for item  in JOB_TYPE:
+        print(item)
         job_type.append(item[0])
 
     return render(request, 'home.html', {'data': job_list, 'job_type': job_type})
