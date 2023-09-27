@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Price plan
+{% endblock title %}
+
+{% block content %}
+   <div class="py-12">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    {% for message in messages %}
+      <p class="text-center text-white bg-red-500 p-2 rounded-md">{{message}}</p> 
+    {% endfor %}
+    <h2 class="text-3xl font-extrabold text-center text-gray-900">Choose a Plan</h2>
+    <p class="mt-4 text-lg text-center text-gray-500">Select a pricing plan that suits your needs.</p>
+
+    <div class="mt-10 flex justify-center">
+      <!-- Price Plan Cards -->
+      <div class="flex space-x-4">
+        <!-- Free Plan -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Free Plan</h3>
+          <!-- <p class="mt-2 text-gray-500">For starters</p> -->
+          <p class="mt-2 text-4xl font-extrabold text-gray-900">Free</p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex items-center">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="ml-2 text-gray-500">access to 20 job post</span>
+            </li>
+          </ul>
+          <div class="mt-6">
+            <a href="#" class="block w-full bg-gray-300 text-gray-700 hover:bg-gray-400 text-center py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+              Get Started
+            </a>
+          </div>
+        </div>
+
+        <!-- Basic Plan -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Basic Plan</h3>
+          <!-- <p class="mt-2 text-gray-500">Perfect for individuals</p> -->
+          <p class="mt-2 text-4xl font-extrabold text-gray-900">$19<span class="text-base font-medium text-gray-500">/mo</span></p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex items-center">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="ml-2 text-gray-500">Access to 50 job listing</span>
+            </li>
+            <!-- Add more features as needed -->
+          </ul>
+          <div class="mt-6">
+            <a href="{% url 'buy_plan' 'basic' %}" class="block w-full bg-green-500 hover:bg-green-600 text-white text-center py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+              Get Started
+            </a>
+          </div>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold text-gray-900">Premium Plan</h3>
+          <!-- <p class="mt-2 text-gray-500">Ideal for businesses</p> -->
+          <p class="mt-2 text-4xl font-extrabold text-gray-900">$49<span class="text-base font-medium text-gray-500">/mo</span></p>
+          <ul class="mt-4 space-y-2">
+            <li class="flex items-center">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="ml-2 text-gray-500">Access to premium 150 job listings</span>
+            </li>
+            <li class="flex items-center">
+              <svg class="h-6 w-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="ml-2 text-gray-500">Access to resume upload</span>
+            </li>
+            <!-- Add more features as needed -->
+          </ul>
+          <div class="mt-6">
+            <a href="{% url 'buy_plan' 'premium' %}" class="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center py-2 px-4 rounded-md transition duration-300 ease-in-out transform hover:scale-105">
+              Get Started
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

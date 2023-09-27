@@ -6,19 +6,38 @@
 {% block title %} Signup {% endblock title %}
 
 {% block content %}
-    <div class="w-[27%] mx-auto shadow-md p-5 mt-5">
+<div class="w-[27%] mx-auto shadow-md p-5 mt-5">
     <h3 class="text-center text-3xl font-bold">Sign Up</h3>
-  <form action="" method="post" class="space-y-2">
-    {% csrf_token %} 
-    {{ form|crispy }}
-    <input class="text-center bg-green-500 text-white py-2 px-4 rounded-md" type="submit" value="Signup" />
-  </form>
+    <form action="" method="post" class="space-y-2" id="user-form">
+        {% csrf_token %} 
+        {{ form|crispy }}
+        <input class="text-center bg-green-500 text-white py-2 px-4 rounded-md" type="submit" value="Signup" />
+    </form>
 </div>
 
 <div class="text-grey-dark mt-10 text-center mb-5">
-  Already have an account?
-  <a class="no-underline border-b border-blue text-blue" href="{% url 'login' %}">
-    Log in </a
-  >
+    Already have an account?
+    <a class="no-underline border-b border-blue text-blue" href="{% url 'login' %}">
+        Log in
+    </a>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const companyCheckbox = document.querySelector("#id_company");
+    const candidateCheckbox = document.querySelector("#id_candidate");
+
+    companyCheckbox.addEventListener("change", function () {
+        if (companyCheckbox.checked) {
+            candidateCheckbox.checked = false;
+        }
+    });
+
+    candidateCheckbox.addEventListener("change", function () {
+        if (candidateCheckbox.checked) {
+            companyCheckbox.checked = false;
+        }
+    });
+});
+</script>
 {% endblock content %}

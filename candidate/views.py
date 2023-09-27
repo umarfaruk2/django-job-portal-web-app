@@ -33,6 +33,15 @@ def profile(request):
 
     return render(request, 'candidate/profile.html', {'data': profile})
 
+def apply_job_list(request):
+    my_job_list = MyAppliedJobModel.objects.filter(user = request.user)
+    return render(request, 'candidate/apply_job_list.html', {'data': my_job_list})
+
+def delete_apply_job(request, id):
+    MyAppliedJobModel.objects.get(pk = id).delete()
+
+    return redirect('apply_job_list')
+
 class UpdateProfile(UpdateView):
     template_name = 'candidate/update_profile.html' 
     model = CandidateModel
@@ -45,14 +54,17 @@ def apply_job(request, id):
         try:
             candidate = CandidateModel.objects.get(user = request.user)
             jobPost = JobPostModel.objects.get(pk = id)
-            
             register_u = RegisterInfoModel.objects.get(user = request.user)
             try:
                 check = MyAppliedJobModel.objects.get(jobPost__id = id, user = request.user)
                 messages.error(request, 'You already apply for this post')
             except:
-                apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)
-                messages.success(request, 'Apply Successfully!')
+                total_job = MyAppliedJobModel.objects.filter(user = request.user).count()
+                if total_job > 20:
+                    messages.error(request, "You can't apply over 20 job for this month with Free plan. Please update you plan")
+                else:
+                    apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)
+                    messages.success(request, 'Apply Successfully!')
         except:
             if register_u == None:
                 messages.error(request, "Your not a candidate")

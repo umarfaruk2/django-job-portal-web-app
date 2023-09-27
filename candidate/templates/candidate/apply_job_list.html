@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    My job list
+{% endblock title %}
+
+
+{% block content %}
+    <div>
+        <h3 class="text-2xl text-center font-bold mt-8">My Apply Job List</h3>
+
+        <div class="container pr-7 mt-4 m-full mx-auto">
+    <table class="min-w-full mx-auto bg-white rounded-lg overflow-hidden">
+      <!-- Table Header -->
+      <thead class="bg-gray-200 uppercase text-sm text-gray-600">
+        <tr>
+          <th class="py-3 px-6 text-left">Title</th>
+          <th class="py-3 px-6 text-left">Company</th>
+          <th class="py-3 px-6">Description</th>
+          <th class="py-3 px-6 text-center">Salary</th>
+          <th class="py-3 px-6 text-center">Location</th>
+          <th class="py-3 px-6 text-center">Job type</th>
+          <th class="py-3 px-6 text-center">Action</th>
+        </tr>
+      </thead>
+      <!-- Table Body -->
+      <tbody class="text-gray-600 text-sm font-light">
+        {% for item in data %}
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="py-3 px-6 text-left">{{item.jobPost.title}}</td>
+          <td class="py-3 px-6 text-left">{{item.jobPost.company}}</td>
+          <td class="py-3 px-6 text-center">
+            {{item.jobPost.description|truncatewords:3}}
+          </td>
+          <td class="py-3 px-6 text-center">{{item.jobPost.salary}}</td>
+          <td class="py-3 px-6 text-center">{{item.jobPost.location}}</td>
+          <td class="py-3 px-6 text-center">{{item.jobPost.job_type}}</td>
+          <td class="text-center">
+            <a href="{% url 'delete_apply_job' item.id %}" class="text-white bg-red-600 rounded-md p-1">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+    </div>
+{% endblock content %}

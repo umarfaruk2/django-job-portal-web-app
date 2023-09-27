@@ -1,4 +1,3 @@
-from django.shortcuts import redirect
 from .models import RegisterInfoModel
 from django.contrib.auth.models import AnonymousUser
  

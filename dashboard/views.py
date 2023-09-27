@@ -3,6 +3,7 @@ from django.urls import reverse_lazy
 from .models import JobPostModel
 from django.views.generic.edit import UpdateView
 from .forms import JobPostModelForm
+from candidate.models import MyAppliedJobModel
 
 def job_post(request):
     if request.method == 'POST':
@@ -21,9 +22,8 @@ def posted_job(request):
     return render(request, 'dashboard/posted_jobs.html', {'data': jobs})
 
 def applied_job(request):
-    jobs = {}
-    return render(request, 'dashboard/applied_jobs.html', {'data': jobs})
-
+    apply_post = MyAppliedJobModel.objects.filter(jobPost__user = request.user)
+    return render(request, 'dashboard/applied_jobs.html', {'data': apply_post})
 
 class UpdateJob(UpdateView):
     template_name = 'dashboard/update_job.html' 
@@ -35,4 +35,7 @@ def delete_post(request, id):
     JobPostModel.objects.get(pk = id).delete() 
     return redirect('posted_job')
 
-    
+def delete_candidate_apply(request, id):
+    MyAppliedJobModel.objects.get(pk = id).delete()   
+
+    return redirect('applied_job')

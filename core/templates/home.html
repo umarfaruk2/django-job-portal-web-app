@@ -1,5 +1,5 @@
-{% extends "base.html" %} {% load static %} 
-{% block title %} Home {% endblock title %} 
+{% extends "base.html" %} {% load static %} {% block title %} Home {% endblock title %} 
+
 {% block content %}
 <div
   style="
@@ -77,6 +77,18 @@
 <!-- </div> -->
 
 <!-- job list -->
+
+{% for message in messages %} 
+{% if 'success' in message.tags %}
+<script>
+  alert("Success message: {{ message }}");
+</script>
+{% else %} 
+<script>
+  alert("Failed message: {{ message }}");
+</script>
+{% endif %}
+{% endfor %}
 
 <h3 class="mt-10 text-3xl font-bold text-center">Feature Jobs</h3>
 

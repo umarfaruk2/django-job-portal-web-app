@@ -8,4 +8,4 @@ class CandidateModelForm(admin.ModelAdmin):
 
 @admin.register(MyAppliedJobModel)
 class MyApplyJobModelForm(admin.ModelAdmin):
-    list_display = ('user', 'candidate', 'jobPost')
+    list_display = ('id', 'user', 'candidate', 'jobPost')

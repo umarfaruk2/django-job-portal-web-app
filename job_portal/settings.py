@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'dashboard',
     'candidate',
+    'price_plan',
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -83,7 +84,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'accounts.context_processors.register_info'
+                'accounts.context_processors.register_info',
+                'price_plan.context_processors.payment_info'
             ],
         },
     },

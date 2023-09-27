@@ -7,7 +7,7 @@ from .contains import JOB_TYPE
 class JobPostModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE) 
     title = models.CharField(max_length=50)
-    company = models.CharField(max_length=50)
+    company = models.CharField(max_length=50, unique=True)
     location = models.CharField(max_length=50)
     job_type = models.CharField(choices=JOB_TYPE, max_length=50)
     salary = models.IntegerField()

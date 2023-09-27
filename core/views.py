@@ -14,8 +14,11 @@ def home(request):
     elif job:
         job_list = JobPostModel.objects.filter(job_type = job)
 
+    payment_info = request.COOKIES.get('payment_plan', None)
+    print(payment_info)
 
     job_type = ['All']
+
     for item  in JOB_TYPE:
         print(item)
         job_type.append(item[0])
