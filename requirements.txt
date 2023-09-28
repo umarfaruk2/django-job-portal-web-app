@@ -1,0 +1,8 @@
+crispy-tailwind
+Django
+django-browser-reload
+django-cors-headers
+django-crispy-forms
+django-tailwind
+Pillow
+sslcommerz-lib
