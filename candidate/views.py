@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from dashboard.models import JobPostModel
 from .models import CandidateModel, MyAppliedJobModel
@@ -6,6 +6,7 @@ from .forms import CandidateModelForm
 from accounts.models import RegisterInfoModel
 from django.views.generic.edit import UpdateView
 from django.contrib import messages
+from price_plan.models import PricePlanModel
 
 def job_detail(request, id):
     get_job = JobPostModel.objects.get(pk = id)
@@ -60,7 +61,9 @@ def apply_job(request, id):
                 messages.error(request, 'You already apply for this post')
             except:
                 total_job = MyAppliedJobModel.objects.filter(user = request.user).count()
-                if total_job > 20:
+                price_plan = get_object_or_404(PricePlanModel, user = request.user)
+                print('price_plan...', price_plan)
+                if total_job > 2:
                     messages.error(request, "You can't apply over 20 job for this month with Free plan. Please update you plan")
                 else:
                     apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)

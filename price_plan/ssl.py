@@ -41,6 +41,5 @@ def sslcommerz_payment_gateway(request, plan, user_id, total):
     post_body['value_c'] = 'email'
 
     response = sslcommez.createSession(post_body)
-    print(response)
     # return JsonResponse(response)
     return 'https://sandbox.sslcommerz.com/gwprocess/v4/gw.php?Q=pay&SESSIONKEY=' + response["sessionkey"]

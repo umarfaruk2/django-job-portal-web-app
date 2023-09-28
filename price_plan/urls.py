@@ -6,4 +6,5 @@ urlpatterns = [
     path('buy_plan/<slug:plan>', views.buy_plan, name='buy_plan'),
     path('success/', views.success_view, name='success'),
     path('faild/', views.faild_view, name='faild'),
+    path('free_plan/', views.free_plan, name='free_plan'),
 ]

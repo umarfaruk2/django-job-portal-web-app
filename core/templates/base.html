@@ -22,9 +22,9 @@
             {% if register_info.candidate %}
              <div class="relative group">
                 <button class="text-gray-700 focus:outline-none">
-                  {% if payment_info == 'basic' %}
+                  {% if payment_info.plan == 'Basic' %}
                     <span class="bg-green-500 text-white text-sm p-1 rounded-md">{{payment_info}}</span> 
-                  {% elif payment_info == 'premium' %}
+                  {% elif payment_info.plan == 'Premium' %}
                     <span class="bg-amber-500 text-white text-sm p-1 rounded-md">{{payment_info}}</span> 
                   {% else %}
                     <span class="bg-gray-500 text-white text-sm p-1 rounded-md">Free</span> 
