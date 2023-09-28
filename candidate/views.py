@@ -63,8 +63,12 @@ def apply_job(request, id):
                 total_job = MyAppliedJobModel.objects.filter(user = request.user).count()
                 price_plan = get_object_or_404(PricePlanModel, user = request.user)
                 print('price_plan...', price_plan)
-                if total_job > 2:
+                if total_job >= 20 and price_plan.plan == 'Free':
                     messages.error(request, "You can't apply over 20 job for this month with Free plan. Please update you plan")
+                elif total_job >= 50 and price_plan.plan == 'Basic':
+                    messages.error(request, "You can't apply over 50 job for this month with Basic plan. Please update you plan")
+                elif total_job >= 150 and price_plan.plan == 'Premium':
+                    messages.error(request, "You can't apply over 150 job for this month with Premium plan. Please update you plan")
                 else:
                     apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)
                     messages.success(request, 'Apply Successfully!')

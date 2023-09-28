@@ -77,20 +77,6 @@
 <!-- </div> -->
 
 <!-- job list -->
-
-{% for message in messages %} 
-{% if 'success' in message.tags %}
-<script>
-  alert("Success message: {{ message }}");
-</script>
-{% else %} 
-<script>
-  alert("Failed message: {{ message }}");
-</script>
-{% endif %}
-{% endfor %}
-
-
 <h3 class="mt-10 text-3xl font-bold text-center">Feature Jobs</h3>
 
 {% for item in data %}
@@ -119,6 +105,60 @@
   </div>
 </div>
 {% endfor %}
+
+<!-- feature how it work -->
+<section class="bg-gray-200 py-12 mb-8">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">How It Works</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center">
+                    <div class="rounded-full bg-indigo-500 text-white w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Create an Account</h3>
+                    <p class="text-gray-700">Sign up as a job seeker or employer to get started.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="rounded-full bg-indigo-500 text-white w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Search for Jobs</h3>
+                    <p class="text-gray-700">Browse and search for jobs that match your skills and preferences.</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="rounded-full bg-indigo-500 text-white w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Apply and Get a job</h3>
+                    <p class="text-gray-700">Apply to job listings and become a employer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6 text-center">What Our Users Say</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="text-gray-600 mb-4">"I found my dream job through this portal! The search process was easy, and the job listings were top-notch."</div>
+                    <p class="text-gray-800 font-semibold">- Sarah Johnson</p>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="text-gray-600 mb-4">"As an employer, I've had great success finding qualified candidates. This platform has made our hiring process much smoother."</div>
+                    <p class="text-gray-800 font-semibold">- John Smith, HR Manager</p>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white shadow-lg rounded-lg p-6">
+                    <div class="text-gray-600 mb-4">"The user interface is intuitive, and the job alerts keep me updated on new opportunities. Highly recommended!"</div>
+                    <p class="text-gray-800 font-semibold">- Emily Rodriguez</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 <!-- footer -->
 

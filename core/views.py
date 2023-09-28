@@ -20,12 +20,8 @@ def home(request):
             find_plan = PricePlanModel.objects.get(user = request.user)    
             find_plan.plan = request.COOKIES.get('price_plan', None)
             find_plan.save()
-            response = HttpResponse("Cookie deleted successfully")
-            response.delete_cookie('price_plan')
         except PricePlanModel.DoesNotExist:
             create_plan = PricePlanModel.objects.create(user = request.user, plan = request.COOKIES.get('price_plan', None))
-            response = HttpResponse("Cookie deleted successfully")
-            response.delete_cookie('price_plan')
         
     job_type = ['All']
 

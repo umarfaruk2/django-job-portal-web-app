@@ -49,7 +49,9 @@ def free_plan(request):
             price_plan = PricePlanModel.objects.get(user = request.user)    
             price_plan.plan = 'Free'
             price_plan.save()
-            return redirect('price_plan')
+            response = redirect('price_plan')
+            response.set_cookie('price_plan', 'Free', max_age=3600)
+            return response
         else:
             messages.error(request, 'This plans for only candidate')
             return redirect('price_plan')

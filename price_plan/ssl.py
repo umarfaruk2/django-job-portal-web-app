@@ -13,7 +13,6 @@ def sslcommerz_payment_gateway(request, plan, user_id, total):
     
     settings = {'store_id': gateway_auth_details.store_id,
                 'store_pass': gateway_auth_details.store_pass, 'issandbox': True}
-    print("heyyyyyyyy ", settings)
     sslcommez = SSLCOMMERZ(settings)
     post_body = {}
     post_body['total_amount'] = total
