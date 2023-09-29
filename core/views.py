@@ -18,7 +18,9 @@ def home(request):
     if request.COOKIES.get('price_plan'):
         try:
             find_plan = PricePlanModel.objects.get(user = request.user)    
+            print(find_plan.plan)
             find_plan.plan = request.COOKIES.get('price_plan', None)
+            print(find_plan.plan)
             find_plan.save()
         except PricePlanModel.DoesNotExist:
             create_plan = PricePlanModel.objects.create(user = request.user, plan = request.COOKIES.get('price_plan', None))
@@ -28,4 +30,7 @@ def home(request):
     for item  in JOB_TYPE:
         job_type.append(item[0])
 
-    return render(request, 'home.html', {'data': job_list, 'job_type': job_type}) 
+    response = render(request, 'home.html', {'data': job_list, 'job_type': job_type})
+    response.delete_cookie('price_plan')
+
+    return response

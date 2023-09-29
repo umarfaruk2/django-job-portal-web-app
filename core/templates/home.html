@@ -1,6 +1,13 @@
 {% extends "base.html" %} {% load static %} {% block title %} Home {% endblock title %} 
 
 {% block content %}
+{% for message in messages %}
+  {% if 'success' in message.tags %}
+    <p class="text-white bg-green-500 p-2 w-full text-center message">{{message}}</p> 
+  {% elif 'error' in message.tags %}
+    <p class="text-white bg-red-500 p-2 w-full text-center message">{{message}}</p> 
+  {% endif %}
+{% endfor %}
 <div
   style="
     background-image: url('/static/images/job_portal_banner.jpg');
@@ -235,6 +242,13 @@
 <script>
   const dropdownButton = document.getElementById("dropdown-button");
   const dropdownMenu = document.getElementById("dropdown-menu");
+  const message_tag = document.querySelector(".message");
+
+  message_tag.style.display = 'block';
+  
+  setTimeout(function() {
+    message_tag.style.display = 'none';
+  }, 5000)
 
   dropdownButton.addEventListener("click", () => {
     dropdownMenu.classList.toggle("hidden");
