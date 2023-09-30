@@ -32,7 +32,6 @@ Welcome to our Django-based Job Portal web application, where job seekers and em
   - Location
   - Salary
   - Job description
-  - Application deadline
 - Job listings are categorized by industry, location, and job type (full-time, part-time).
 
 ## Job Search and Filtering
