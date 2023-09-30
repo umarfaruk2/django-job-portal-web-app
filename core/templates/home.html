@@ -77,6 +77,7 @@
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
@@ -243,6 +244,14 @@
   const dropdownButton = document.getElementById("dropdown-button");
   const dropdownMenu = document.getElementById("dropdown-menu");
   const message_tag = document.querySelector(".message");
+  document.addEventListener("DOMContentLoaded", function () {
+  const dropdownButton = document.getElementById("dropdown-button");
+  const dropdownMenu = document.getElementById("dropdown-menu");
+
+  dropdownButton.addEventListener("click", function () {
+    dropdownMenu.classList.toggle("hidden");
+  });
+});
 
   message_tag.style.display = 'block';
   

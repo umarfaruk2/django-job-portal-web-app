@@ -29,6 +29,7 @@ def home(request):
 
     for item  in JOB_TYPE:
         job_type.append(item[0])
+    
 
     response = render(request, 'home.html', {'data': job_list, 'job_type': job_type})
     response.delete_cookie('price_plan')
