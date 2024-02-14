@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from .models import RegisterInfoModel
+from price_plan.models import PricePlanModel
 
 def register(request):
     if request.method == 'POST':
@@ -13,9 +14,13 @@ def register(request):
             username = fm.cleaned_data.get('username')
             company = fm.cleaned_data.get('company')
             candidate = fm.cleaned_data.get('candidate')
+                
             user = User.objects.get(username = username)
             user_info = RegisterInfoModel.objects.create(user = user, company = company, candidate = candidate) 
             user_info.save()
+            if candidate:
+                price_user = User.objects.get(username = username)
+                my_user = PricePlanModel.objects.create(user = price_user, plan = 'Free')
             return redirect('login')
     else:
         fm = RegisterForm()

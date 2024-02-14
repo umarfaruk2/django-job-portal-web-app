@@ -7,6 +7,7 @@ from accounts.models import RegisterInfoModel
 from django.views.generic.edit import UpdateView
 from django.contrib import messages
 from price_plan.models import PricePlanModel
+from django.http import Http404
 
 def job_detail(request, id):
     get_job = JobPostModel.objects.get(pk = id)
@@ -49,36 +50,42 @@ class UpdateProfile(UpdateView):
     form_class = CandidateModelForm
     success_url = reverse_lazy('profile') 
     
+
 def apply_job(request, id):
     if request.user.is_authenticated:
         register_u = None
-        try:
-            candidate = CandidateModel.objects.get(user = request.user)
-            jobPost = JobPostModel.objects.get(pk = id)
-            register_u = RegisterInfoModel.objects.get(user = request.user)
+        candidate = None
+        jobPost = None
+        
+        register_u = RegisterInfoModel.objects.get(user = request.user)
+        print(register_u)
+        if not register_u.candidate:
+            messages.error(request, "Your not a candidate")
+        else:
             try:
-                check = MyAppliedJobModel.objects.get(jobPost__id = id, user = request.user)
-                messages.error(request, 'You already apply for this post')
+                candidate = CandidateModel.objects.get(user = request.user)
+                jobPost = JobPostModel.objects.get(id = id)
+                
+                try:
+                    check = MyAppliedJobModel.objects.get(jobPost__id = id, user = request.user)
+                    messages.error(request, 'You already apply for this post')
+                except:
+                    total_job = MyAppliedJobModel.objects.filter(user = request.user).count()
+                    price_plan = PricePlanModel.objects.get(user = request.user)
+                    print('price_plan...', price_plan)
+                    if total_job >= 20 and price_plan.plan == 'Free':
+                        messages.error(request, "You can't apply over 20 job for this month with Free plan. Please update you plan")
+                    elif total_job >= 50 and price_plan.plan == 'Basic':
+                        messages.error(request, "You can't apply over 50 job for this month with Basic plan. Please update you plan")
+                    elif total_job >= 150 and price_plan.plan == 'Premium':
+                        messages.error(request, "You can't apply over 150 job for this month with Premium plan.")
+                    else:
+                        apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)
+                        messages.success(request, 'Apply Successfully!')
+                        
             except:
-                total_job = MyAppliedJobModel.objects.filter(user = request.user).count()
-                price_plan = get_object_or_404(PricePlanModel, user = request.user)
-                print('price_plan...', price_plan)
-                if total_job >= 20 and price_plan.plan == 'Free':
-                    messages.error(request, "You can't apply over 20 job for this month with Free plan. Please update you plan")
-                elif total_job >= 50 and price_plan.plan == 'Basic':
-                    messages.error(request, "You can't apply over 50 job for this month with Basic plan. Please update you plan")
-                elif total_job >= 150 and price_plan.plan == 'Premium':
-                    messages.error(request, "You can't apply over 150 job for this month with Premium plan. Please update you plan")
-                else:
-                    apply_job = MyAppliedJobModel.objects.create(user = request.user, candidate = candidate, jobPost = jobPost)
-                    messages.success(request, 'Apply Successfully!')
-        except:
-            if register_u == None:
-                messages.error(request, "Your not a candidate")
-            else:
-                    messages.error(request, 'Create Your profile first')
+                messages.error(request, 'Create Your profile first')
+                 
         return redirect('job_detail', id = id)
     else:
         return redirect('login')
-
-    
